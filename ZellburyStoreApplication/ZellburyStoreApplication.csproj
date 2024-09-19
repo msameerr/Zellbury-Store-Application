@@ -14,9 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>

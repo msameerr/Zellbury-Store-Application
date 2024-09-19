@@ -11,7 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZellburyStoreApplication.Contracts;
 using ZellburyStoreApplication.Data;
+using ZellburyStoreApplication.Repository;
 
 namespace ZellburyStoreApplication
 {
@@ -30,8 +32,16 @@ namespace ZellburyStoreApplication
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+
+            // Add References for Contracts and Repository in Startup file
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IPurchaseRecordRepository, PurchaseRecordRepository>();
+
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
