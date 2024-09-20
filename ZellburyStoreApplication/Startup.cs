@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ZellburyStoreApplication.Contracts;
 using ZellburyStoreApplication.Data;
+using ZellburyStoreApplication.Mappings;
 using ZellburyStoreApplication.Repository;
 
 namespace ZellburyStoreApplication
@@ -38,6 +40,8 @@ namespace ZellburyStoreApplication
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IPurchaseRecordRepository, PurchaseRecordRepository>();
 
+            // Add Mapping for ViewModels
+            services.AddAutoMapper(typeof(Maps));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
