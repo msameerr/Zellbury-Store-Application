@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace ZellburyStoreApplication.Repository
 
         public ICollection<PurchaseRecord> FindAll()
         {
-            var records = _db.purchaseRecords.ToList();
+            var records = _db.purchaseRecords.Include(q => q.Customer).Include(q => q.Product).ToList();
             return records;
         }
 
@@ -39,6 +40,11 @@ namespace ZellburyStoreApplication.Repository
         {
             var record = _db.purchaseRecords.Find(id);
             return record;
+        }
+
+        public ICollection<PurchaseRecord> GetProductByCustomer(string Customerid)
+        {
+            return FindAll().Where(q => q.CustomerId == Customerid).ToList();
         }
 
         public bool isExist(int id)

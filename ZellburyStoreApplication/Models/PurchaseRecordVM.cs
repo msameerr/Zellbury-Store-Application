@@ -15,12 +15,12 @@ namespace ZellburyStoreApplication.Models
 
 
 
-        public Customer Customer { get; set; }
+        public CustomerVM Customer { get; set; }
         public String CustomerId { get; set; }
 
 
        
-        public Product Product { get; set; }
+        public ProductVM Product { get; set; }
         public int ProductId { get; set; }
 
     }
@@ -28,10 +28,6 @@ namespace ZellburyStoreApplication.Models
 
     public class CartVM
     {
-        public CustomerVM Customer { get; set; }
-        public String CustomerId { get; set; }
-
-
         public List<ProductVM> productVMs { get; set; }
 
     }

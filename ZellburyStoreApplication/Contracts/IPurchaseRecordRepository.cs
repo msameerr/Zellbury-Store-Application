@@ -8,5 +8,8 @@ namespace ZellburyStoreApplication.Contracts
 {
     public interface IPurchaseRecordRepository : IRepositoryBase<PurchaseRecord>
     {
+
+        ICollection<PurchaseRecord> GetProductByCustomer(String Customerid);
+
     }
 }
