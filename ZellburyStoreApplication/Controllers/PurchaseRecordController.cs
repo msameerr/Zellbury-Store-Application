@@ -119,18 +119,49 @@ namespace ZellburyStoreApplication.Controllers
         }
 
         // GET: PurchaseRecordController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete()
         {
-            return View();
+
+            var user = _userManager.GetUserAsync(User).Result;
+            var Customerid = user.Id;
+
+            var cart = _purchaseRepo.GetProductByCustomer(Customerid).ToList();
+
+            foreach (var Purchase in cart)
+            {
+
+                var PurchaseId = Purchase.Id;
+                var product = _purchaseRepo.FindById(PurchaseId);
+
+                var mapp = _mapper.Map<PurchaseRecord>(product);
+                _purchaseRepo.Delete(mapp);
+
+            }
+
+            return RedirectToAction("InfoPage");
+        }
+
+        public ActionResult InfoPage()
+        {
+
+            var Customer = _userManager.GetUserAsync(User).Result;
+
+
+            var model = _mapper.Map<CustomerVM>(Customer);
+
+            return View(model);
         }
 
         // POST: PurchaseRecordController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {
+
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch

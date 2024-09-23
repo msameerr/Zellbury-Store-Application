@@ -1,0 +1,60 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@using ZellburyStoreApplication.Data
+@inject SignInManager<Customer> SignInManager
+@inject UserManager<Customer> UserManager
+@model ZellburyStoreApplication.Models.CustomerVM
+
+@{
+    ViewData["Title"] = "IngoPage";
+}
+
+<h1>IngoPage</h1>
+
+<div>
+    <h4>CustomerVM</h4>
+    <hr />
+    <dl class="row">
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+</div>
+<div>
+
+    <div class="text-center">
+        <h1 class="display-4">THANKS FOR USING ZELLBURY</h1>
+        <p> Please come again</p>
+    </div>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="btn btn-success">Leave this site NOW</button>
+        </form>
+
+    }
+</div>

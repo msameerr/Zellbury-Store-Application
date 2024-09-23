@@ -41,11 +41,11 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                <a asp-action="Cart" asp-route-id="@item.Id">Cart</a>
+                <a asp-action="Cart" asp-route-id="@item.Id">Add to Cart</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
 
-<a asp-action="Details">Go to CART</a>
+<a asp-action="Details">View CART</a>
