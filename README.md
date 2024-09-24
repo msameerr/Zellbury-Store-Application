@@ -24,6 +24,6 @@ Zellbury Store is an platform where administrators can manage products by adding
 
 ## Installation
 
-1. Clone the repository:
+Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/zellbury-store.git
+   [git clone https://github.com/yourusername/zellbury-store.git](https://github.com/msameerr/Zellbury-Store-Application.git)
